@@ -70,6 +70,15 @@ namespace Paint {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string file {
+            get {
+                return ResourceManager.GetString("file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
         internal static string history {
@@ -84,6 +93,15 @@ namespace Paint {
         internal static string language {
             get {
                 return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to open.
+        /// </summary>
+        internal static string open {
+            get {
+                return ResourceManager.GetString("open", resourceCulture);
             }
         }
         
@@ -111,6 +129,15 @@ namespace Paint {
         internal static string redo {
             get {
                 return ResourceManager.GetString("redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        internal static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
             }
         }
         

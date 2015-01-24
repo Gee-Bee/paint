@@ -120,11 +120,17 @@
   <data name="ellipse" xml:space="preserve">
     <value>elipsa</value>
   </data>
+  <data name="file" xml:space="preserve">
+    <value>Plik</value>
+  </data>
   <data name="history" xml:space="preserve">
     <value>Historia</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Język</value>
+  </data>
+  <data name="open" xml:space="preserve">
+    <value>Otwórz</value>
   </data>
   <data name="pen" xml:space="preserve">
     <value>pióro</value>
@@ -134,6 +140,9 @@
   </data>
   <data name="redo" xml:space="preserve">
     <value>powtórz</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Zapisz</value>
   </data>
   <data name="segment" xml:space="preserve">
     <value>odcinek</value>

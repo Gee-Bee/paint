@@ -31,12 +31,17 @@ namespace Paint
         public Form1()
         {
             InitializeComponent();
+            reset();
+            ci = Thread.CurrentThread.CurrentUICulture;
+            ChangeLanguage();
+        }
+
+        private void reset()
+        {
             shapesAdded = new List<Shape>();
             shapesRemoved = new List<Shape>();
             drawer = new Drawer(shapesAdded);
             pen = new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value);
-            ci = Thread.CurrentThread.CurrentUICulture;
-            ChangeLanguage();
         }
         
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -130,6 +135,9 @@ namespace Paint
             historyToolStripMenuItem.Text = rm.GetString("history", ci);
             undoToolStripMenuItem.Text = rm.GetString("undo", ci);
             redoToolStripMenuItem.Text = rm.GetString("redo", ci);
+            fileToolStripMenuItem.Text = rm.GetString("file", ci);
+            openToolStripMenuItem.Text = rm.GetString("open", ci);
+            saveToolStripMenuItem.Text = rm.GetString("save", ci);
 
             groupBoxShapes.Text = rm.GetString("shapes", ci);
             buttonSegment.Text = rm.GetString("segment", ci);
@@ -168,12 +176,26 @@ namespace Paint
             saveDialog.ShowDialog();
             if (saveDialog.FileName != "")
             {
-                Bitmap bm = new Bitmap(this.Width, this.Height);
-                this.DrawToBitmap(bm, this.Bounds);
-                bm.Save(saveDialog.FileName);
-                //pictureBox1.Image.Save(dialog.FileName);
+                Bitmap bmp = new Bitmap(Canvas.Width, Canvas.Height);
+                Canvas.DrawToBitmap(bmp, Canvas.Bounds);
+                bmp.Save(saveDialog.FileName); 
             }
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "bmp|*.bmp|jpg (*.jpg)|*.jpg";
+            openDialog.ShowDialog();
+            if (openDialog.FileName != "")
+            {
+                reset();
+                Canvas.Image = Image.FromFile(openDialog.FileName);
+            }
+        }
+
+        
     }
 
 }

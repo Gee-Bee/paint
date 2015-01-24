@@ -47,6 +47,7 @@
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.polskiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Canvas = new System.Windows.Forms.PictureBox();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxLeft.SuspendLayout();
             this.groupBoxPen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownPenSize)).BeginInit();
@@ -163,6 +164,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -234,6 +236,13 @@
             this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
             this.Canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
             // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +288,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.PictureBox Canvas;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 
