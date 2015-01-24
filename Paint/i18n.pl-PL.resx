@@ -135,6 +135,9 @@
   <data name="pen" xml:space="preserve">
     <value>pióro</value>
   </data>
+  <data name="plugins" xml:space="preserve">
+    <value>Wtyczki</value>
+  </data>
   <data name="rect" xml:space="preserve">
     <value>prostokąt</value>
   </data>

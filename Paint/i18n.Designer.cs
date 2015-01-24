@@ -115,6 +115,15 @@ namespace Paint {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plugins.
+        /// </summary>
+        internal static string plugins {
+            get {
+                return ResourceManager.GetString("plugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rectangle.
         /// </summary>
         internal static string rect {

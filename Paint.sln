@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint", "Paint\Paint.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{398D1142-4A07-4404-AB0F-330AF11650B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginGrayscale", "PluginGrayscale\PluginGrayscale.csproj", "{3ED67DF5-9E8E-44CE-930C-31119D799127}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{398D1142-4A07-4404-AB0F-330AF11650B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{398D1142-4A07-4404-AB0F-330AF11650B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{398D1142-4A07-4404-AB0F-330AF11650B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED67DF5-9E8E-44CE-930C-31119D799127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED67DF5-9E8E-44CE-930C-31119D799127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED67DF5-9E8E-44CE-930C-31119D799127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED67DF5-9E8E-44CE-930C-31119D799127}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

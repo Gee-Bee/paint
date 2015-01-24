@@ -13,6 +13,8 @@ using System.Globalization;
 using System.Resources;
 using System.Reflection;
 using System.Threading;
+using System.IO;
+using Interface;
 
 namespace Paint
 {
@@ -25,6 +27,7 @@ namespace Paint
         enum ShapeType { Line, Rect, Ellipse };
         ShapeType selectedShapeType = ShapeType.Line;
         Pen pen;
+        IPlugin grayscale;
 
         CultureInfo ci;
 
@@ -32,6 +35,7 @@ namespace Paint
         {
             InitializeComponent();
             reset();
+            loadPlugins();
             ci = Thread.CurrentThread.CurrentUICulture;
             ChangeLanguage();
         }
@@ -100,7 +104,7 @@ namespace Paint
 
         private void buttonEllipse_Click(object sender, EventArgs e)
         {
-            selectedShapeType = ShapeType.Ellipse;
+            selectedShapeType = ShapeType.Ellipse;            
         }
 
         private void buttonColor_Click(object sender, EventArgs e)
@@ -138,6 +142,7 @@ namespace Paint
             fileToolStripMenuItem.Text = rm.GetString("file", ci);
             openToolStripMenuItem.Text = rm.GetString("open", ci);
             saveToolStripMenuItem.Text = rm.GetString("save", ci);
+            pluginsToolStripMenuItem.Text = rm.GetString("plugins", ci);
 
             groupBoxShapes.Text = rm.GetString("shapes", ci);
             buttonSegment.Text = rm.GetString("segment", ci);
@@ -195,7 +200,27 @@ namespace Paint
             }
         }
 
-        
+        private void loadPlugins()
+        {
+            Assembly assembly = Assembly.LoadFrom("E:\\tpal\\labs\\Paint\\Paint\\Plugins\\PluginGrayscale.dll");
+            foreach (var t in assembly.GetTypes())
+            {
+                if (t.IsClass && t.IsPublic && typeof(IPlugin).IsAssignableFrom(t))
+                {
+                    Object o = Activator.CreateInstance(t);
+                    grayscale = (IPlugin)o;
+                }
+            } 
+        }
+
+        private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = new Bitmap(Canvas.Width, Canvas.Height);
+            Canvas.DrawToBitmap(bmp, new Rectangle(0,0,Canvas.Width, Canvas.Height));
+            Bitmap newBmp = grayscale.processImage(bmp);
+            reset();
+            Canvas.Image = newBmp;
+        }
     }
 
 }

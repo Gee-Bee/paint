@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    interface IPlugin
+    public interface IPlugin
     {
         Bitmap processImage(Bitmap bmp);
     }

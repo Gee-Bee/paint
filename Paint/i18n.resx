@@ -135,6 +135,9 @@
   <data name="pen" xml:space="preserve">
     <value>pen</value>
   </data>
+  <data name="plugins" xml:space="preserve">
+    <value>Plugins</value>
+  </data>
   <data name="rect" xml:space="preserve">
     <value>rectangle</value>
   </data>
