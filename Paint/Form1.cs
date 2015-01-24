@@ -28,7 +28,7 @@ namespace Paint
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                currentShape = new Paint.Shapes.Rect(e.X, e.Y);
+                currentShape = new Paint.Shapes.Line(e.X, e.Y);
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -50,7 +50,9 @@ namespace Paint
         {
             if (e.Button == MouseButtons.Left)
             {
+                currentShape.stillDrawing = false;
                 shapes.Add(currentShape);
+                currentShape = null;
                 Invalidate();
             }
         }
