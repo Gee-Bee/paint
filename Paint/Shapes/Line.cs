@@ -10,9 +10,9 @@ namespace Paint.Shapes
 {
     class Line : Shape
     {
-        public Line(int x, int y) : base(x, y) { }
+        public Line(int x, int y, Pen pen) : base(x, y, pen) { }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics)
         {
             if (stillDrawing)
             {

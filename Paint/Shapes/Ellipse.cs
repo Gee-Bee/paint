@@ -13,9 +13,9 @@ namespace Paint.Shapes
         private int r1;
         private int r2;
 
-        public Ellipse(int x, int y) : base(x, y) { }
+        public Ellipse(int x, int y, Pen pen) : base(x, y, pen) { }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics)
         {
             if (stillDrawing)
             {

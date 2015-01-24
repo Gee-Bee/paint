@@ -21,13 +21,13 @@ namespace Paint
 
         public void Draw(Graphics graphics)
         {
-            foreach(var shape in shapes) shape.Draw(graphics, Pens.Black);
+            foreach(var shape in shapes) shape.Draw(graphics);
         }
 
         public void Draw(Graphics graphics, Shape shape)
         {
             Draw(graphics);
-            if (shape != null) shape.Draw(graphics, Pens.Blue);
+            if (shape != null) shape.Draw(graphics);
         }
     }
 }

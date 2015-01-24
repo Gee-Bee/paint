@@ -15,14 +15,16 @@ namespace Paint.Shapes
         public int x2;
         public int y2;
         public Boolean stillDrawing;
+        protected Pen pen;
 
-        public Shape(int x, int y)
+        public Shape(int x, int y, Pen pen)
         {
             this.x1 = this.x2 = x;
             this.y1 = this.y2 = y;
-            stillDrawing = true;
+            this.stillDrawing = true;
+            this.pen = pen;
         }
 
-        public abstract void Draw(Graphics graphics, Pen pen);
+        public abstract void Draw(Graphics graphics);
     }
 }

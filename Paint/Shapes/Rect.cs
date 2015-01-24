@@ -13,9 +13,9 @@ namespace Paint.Shapes
         int width;
         int height;
 
-        public Rect(int x, int y) : base(x, y) { }
+        public Rect(int x, int y, Pen pen) : base(x, y, pen) { }
 
-        public override void Draw(Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics)
         {
             if (stillDrawing)
             {

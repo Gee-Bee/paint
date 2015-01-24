@@ -19,12 +19,14 @@ namespace Paint
         private Drawer drawer;
         enum ShapeType { Line, Rect, Ellipse };
         ShapeType selectedShapeType = ShapeType.Line;
+        Pen pen;
 
         public Form1()
         {
             InitializeComponent();
             shapes = new List<Shape>();
             drawer = new Drawer(shapes);
+            pen = new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value);
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -33,13 +35,13 @@ namespace Paint
                 switch (selectedShapeType)
                 {
                     case ShapeType.Line:
-                        currentShape = new Line(e.X, e.Y);
+                        currentShape = new Line(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
                         break;
                     case ShapeType.Rect:
-                        currentShape = new Rect(e.X, e.Y);
+                        currentShape = new Rect(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
                         break;
                     case ShapeType.Ellipse:
-                        currentShape = new Ellipse(e.X, e.Y);
+                        currentShape = new Ellipse(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
                         break;
                 }
                 
@@ -84,6 +86,18 @@ namespace Paint
         private void buttonEllipse_Click(object sender, EventArgs e)
         {
             selectedShapeType = ShapeType.Ellipse;
+        }
+
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = buttonColor.BackColor;
+            colorDialog1.ShowDialog();
+            pen.Color = buttonColor.BackColor = colorDialog1.Color;
+        }
+
+        private void NumericUpDownPenSize_ValueChanged(object sender, EventArgs e)
+        {
+            pen.Width = (float)((NumericUpDown)sender).Value;
         }
     }
 
