@@ -18,7 +18,8 @@ namespace Paint
 {
     public partial class Form1 : Form
     {
-        private List<Shape> shapes;
+        private List<Shape> shapesAdded;
+        private List<Shape> shapesRemoved;
         private Shape currentShape;
         private Drawer drawer;
         enum ShapeType { Line, Rect, Ellipse };
@@ -31,8 +32,9 @@ namespace Paint
         public Form1()
         {
             InitializeComponent();
-            shapes = new List<Shape>();
-            drawer = new Drawer(shapes);
+            shapesAdded = new List<Shape>();
+            shapesRemoved = new List<Shape>();
+            drawer = new Drawer(shapesAdded);
             pen = new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value);
             ci = Thread.CurrentThread.CurrentUICulture;
             ChangeLanguage();
@@ -76,7 +78,7 @@ namespace Paint
             if (e.Button == MouseButtons.Left)
             {
                 currentShape.stillDrawing = false;
-                shapes.Add(currentShape);
+                shapesAdded.Add(currentShape);
                 currentShape = null;
                 Invalidate();
             }
@@ -126,6 +128,9 @@ namespace Paint
             ResourceManager rm = new ResourceManager("Paint.i18n", Assembly.GetExecutingAssembly());
 
             languageToolStripMenuItem.Text = rm.GetString("language", ci);
+            historyToolStripMenuItem.Text = rm.GetString("history", ci);
+            undoToolStripMenuItem.Text = rm.GetString("undo", ci);
+            redoToolStripMenuItem.Text = rm.GetString("redo", ci);
 
             groupBoxShapes.Text = rm.GetString("shapes", ci);
             buttonSegment.Text = rm.GetString("segment", ci);
@@ -133,6 +138,28 @@ namespace Paint
             buttonEllipse.Text = rm.GetString("ellipse", ci);
 
             groupBoxPen.Text = rm.GetString("pen", ci);
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (shapesAdded.Count > 0)
+            {
+                Shape shape = shapesAdded[shapesAdded.Count - 1];
+                shapesAdded.RemoveAt(shapesAdded.Count - 1);
+                shapesRemoved.Add(shape);
+                Invalidate();
+            }
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (shapesRemoved.Count > 0)
+            {
+                Shape shape = shapesRemoved[shapesRemoved.Count - 1];
+                shapesRemoved.RemoveAt(shapesRemoved.Count - 1);
+                shapesAdded.Add(shape);
+                Invalidate();
+            }
         }
     }
 

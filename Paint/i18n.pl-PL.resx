@@ -120,6 +120,9 @@
   <data name="ellipse" xml:space="preserve">
     <value>elipsa</value>
   </data>
+  <data name="history" xml:space="preserve">
+    <value>Historia</value>
+  </data>
   <data name="language" xml:space="preserve">
     <value>Język</value>
   </data>
@@ -129,10 +132,16 @@
   <data name="rect" xml:space="preserve">
     <value>prostokąt</value>
   </data>
+  <data name="redo" xml:space="preserve">
+    <value>powtórz</value>
+  </data>
   <data name="segment" xml:space="preserve">
     <value>odcinek</value>
   </data>
   <data name="shapes" xml:space="preserve">
     <value>kształty</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>cofnij</value>
   </data>
 </root>

@@ -70,6 +70,15 @@ namespace Paint {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string history {
+            get {
+                return ResourceManager.GetString("history", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string language {
@@ -97,6 +106,15 @@ namespace Paint {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to redo.
+        /// </summary>
+        internal static string redo {
+            get {
+                return ResourceManager.GetString("redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to segment.
         /// </summary>
         internal static string segment {
@@ -111,6 +129,15 @@ namespace Paint {
         internal static string shapes {
             get {
                 return ResourceManager.GetString("shapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to undo.
+        /// </summary>
+        internal static string undo {
+            get {
+                return ResourceManager.GetString("undo", resourceCulture);
             }
         }
     }
