@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Paint.Shapes;
+using System.Globalization;
+using System.Resources;
+using System.Reflection;
+using System.Threading;
 
 namespace Paint
 {
@@ -21,21 +25,26 @@ namespace Paint
         ShapeType selectedShapeType = ShapeType.Line;
         Pen pen;
 
+        CultureInfo ci;
+        ResourceManager rm;
+
         public Form1()
         {
             InitializeComponent();
             shapes = new List<Shape>();
             drawer = new Drawer(shapes);
             pen = new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value);
+            ci = Thread.CurrentThread.CurrentUICulture;
+            ChangeLanguage();
         }
-
+        
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 switch (selectedShapeType)
                 {
                     case ShapeType.Line:
-                        currentShape = new Line(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
+                        currentShape = new Segment(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
                         break;
                     case ShapeType.Rect:
                         currentShape = new Rect(e.X, e.Y, new Pen(buttonColor.BackColor, (float)NumericUpDownPenSize.Value));
@@ -98,6 +107,32 @@ namespace Paint
         private void NumericUpDownPenSize_ValueChanged(object sender, EventArgs e)
         {
             pen.Width = (float)((NumericUpDown)sender).Value;
+        }
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ci = new CultureInfo("en-US");
+            ChangeLanguage();
+        }
+
+        private void polskiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ci = new CultureInfo("pl-PL");
+            ChangeLanguage();
+        }
+
+        private void ChangeLanguage()
+        {
+            ResourceManager rm = new ResourceManager("Paint.i18n", Assembly.GetExecutingAssembly());
+
+            languageToolStripMenuItem.Text = rm.GetString("language", ci);
+
+            groupBoxShapes.Text = rm.GetString("shapes", ci);
+            buttonSegment.Text = rm.GetString("segment", ci);
+            buttonRect.Text = rm.GetString("rect", ci);
+            buttonEllipse.Text = rm.GetString("ellipse", ci);
+
+            groupBoxPen.Text = rm.GetString("pen", ci);
         }
     }
 

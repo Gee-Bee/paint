@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Paint.Shapes
 {
-    class Line : Shape
+    class Segment : Shape
     {
-        public Line(int x, int y, Pen pen) : base(x, y, pen) { }
+        public Segment(int x, int y, Pen pen) : base(x, y, pen) { }
 
         public override void Draw(Graphics graphics)
         {
