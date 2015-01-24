@@ -27,7 +27,6 @@ namespace Paint
         Pen pen;
 
         CultureInfo ci;
-        ResourceManager rm;
 
         public Form1()
         {
@@ -40,7 +39,7 @@ namespace Paint
             ChangeLanguage();
         }
         
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 switch (selectedShapeType)
@@ -58,29 +57,29 @@ namespace Paint
                 
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 currentShape.x2 = e.X;
                 currentShape.y2 = e.Y;
-                Invalidate();
+                Canvas.Invalidate();
             }
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void Canvas_Paint(object sender, PaintEventArgs e)
         {
             drawer.Draw(e.Graphics, currentShape);
         }
 
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 currentShape.stillDrawing = false;
                 shapesAdded.Add(currentShape);
                 currentShape = null;
-                Invalidate();
+                Canvas.Invalidate();
             }
         }
 
@@ -147,7 +146,7 @@ namespace Paint
                 Shape shape = shapesAdded[shapesAdded.Count - 1];
                 shapesAdded.RemoveAt(shapesAdded.Count - 1);
                 shapesRemoved.Add(shape);
-                Invalidate();
+                Canvas.Invalidate();
             }
         }
 
@@ -158,7 +157,21 @@ namespace Paint
                 Shape shape = shapesRemoved[shapesRemoved.Count - 1];
                 shapesRemoved.RemoveAt(shapesRemoved.Count - 1);
                 shapesAdded.Add(shape);
-                Invalidate();
+                Canvas.Invalidate();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "bmp|*.bmp|jpg (*.jpg)|*.jpg";
+            saveDialog.ShowDialog();
+            if (saveDialog.FileName != "")
+            {
+                Bitmap bm = new Bitmap(this.Width, this.Height);
+                this.DrawToBitmap(bm, this.Bounds);
+                bm.Save(saveDialog.FileName);
+                //pictureBox1.Image.Save(dialog.FileName);
             }
         }
     }
