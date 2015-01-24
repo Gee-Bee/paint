@@ -28,10 +28,7 @@ namespace Paint
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
-                currentShape = new Line(e.X, e.Y);
-
-            }
+                currentShape = new Ellipse(e.X, e.Y);
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -47,8 +44,6 @@ namespace Paint
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             drawer.Draw(e.Graphics, currentShape);
-            //e.Graphics.DrawEllipse(Pens.Black, Math.Min(x_start, x_end), Math.Min(y_start, y_end), Math.Abs(x_end - x_start), Math.Abs(y_start - y_end));
-
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
