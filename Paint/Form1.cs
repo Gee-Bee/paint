@@ -17,6 +17,8 @@ namespace Paint
         private List<Shape> shapes;
         private Shape currentShape;
         private Drawer drawer;
+        enum ShapeType { Line, Rect, Ellipse };
+        ShapeType selectedShapeType = ShapeType.Line;
 
         public Form1()
         {
@@ -28,7 +30,19 @@ namespace Paint
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                currentShape = new Paint.Shapes.Line(e.X, e.Y);
+                switch (selectedShapeType)
+                {
+                    case ShapeType.Line:
+                        currentShape = new Line(e.X, e.Y);
+                        break;
+                    case ShapeType.Rect:
+                        currentShape = new Rect(e.X, e.Y);
+                        break;
+                    case ShapeType.Ellipse:
+                        currentShape = new Ellipse(e.X, e.Y);
+                        break;
+                }
+                
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -55,6 +69,21 @@ namespace Paint
                 currentShape = null;
                 Invalidate();
             }
+        }
+
+        private void buttonLine_Click(object sender, EventArgs e)
+        {
+            selectedShapeType = ShapeType.Line;
+        }
+
+        private void buttonRect_Click(object sender, EventArgs e)
+        {
+            selectedShapeType = ShapeType.Rect;
+        }
+
+        private void buttonEllipse_Click(object sender, EventArgs e)
+        {
+            selectedShapeType = ShapeType.Ellipse;
         }
     }
 
