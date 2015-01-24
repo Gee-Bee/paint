@@ -28,7 +28,7 @@ namespace Paint
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                currentShape = new Ellipse(e.X, e.Y);
+                currentShape = new Paint.Shapes.Rect(e.X, e.Y);
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
